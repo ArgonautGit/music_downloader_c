@@ -1,9 +1,9 @@
-#include <stdio.h>
-
 #include "music.h"
 
 int main(void) {
-  test_function(); 
+  test();
 
-  return 1;
+  return 0;
 }
+
+
