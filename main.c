@@ -1,7 +1,9 @@
 #include "music.h"
 
 int main(void) {
-  test();
+  
+  // test();
+  entry();
 
   return 0;
 }
