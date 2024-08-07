@@ -9,7 +9,7 @@ typedef struct {
   char* title;
   char* album;
   char* artist;
-  int id;
+  char* id;
 
   char* url;
 
@@ -101,7 +101,7 @@ Song get_song_info(char* url) {
   char title  [MAX_SONG_STRING_LENGTH];
   char album  [MAX_SONG_STRING_LENGTH];
   char artist [MAX_SONG_STRING_LENGTH];
-  int id;
+  char id     [MAX_SONG_STRING_LENGTH];
 
   // Set up shell command.
   char command[MAX_SHELL_COMMAND_LENGTH];
@@ -112,7 +112,7 @@ Song get_song_info(char* url) {
   shell_command(command, buf);
 
   // MAJOR KNOWN PROBLEM: if there is a comma in one of the fields of the actual YouTube video, this fails to parse.
-  sscanf(buf, "id: %d, title: %1024[^,], artist: %1024[^,], album: %1024[^,]", &id, title, artist, album);
+  sscanf(buf, "id: %1024[^,], title: %1024[^,], artist: %1024[^,], album: %1024[^,]", id, title, artist, album);
 
   Song song = { title, album, artist, id, url };
 
@@ -124,7 +124,7 @@ Song create_song(char* url) {
   char title  [MAX_SONG_STRING_LENGTH];
   char album  [MAX_SONG_STRING_LENGTH];
   char artist [MAX_SONG_STRING_LENGTH];
-  int id;
+  char id     [MAX_SONG_STRING_LENGTH];
 
   Song song; 
   get_song_info(url);
@@ -153,7 +153,7 @@ int entry(void) {
   // download_song("https://www.youtube.com/watch?v=dQw4w9WgXcQ", 44);
 
   Song song = create_song("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-  printf("title: %s\nalbum: %s\nartist: %s\nid: %d\nurl: %s\n", song.title, song.album, song.artist, song.id, song.url);
+  printf("title: %s\nalbum: %s\nartist: %s\nid: %s\nurl: %s\n", song.title, song.album, song.artist, song.id, song.url);
 
 
   
